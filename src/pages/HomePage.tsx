@@ -23,7 +23,7 @@ export default function HomePage(){
   return <div>
     <header className="nav-wrap">
       <nav className="nav shell">
-        <button className="brand" onClick={()=>go('home')}><span className="ankh">ANKH</span><span className="iva">IVA</span><small>INTERNATIONAL MEDICAL CARE</small></button>
+        <button className="brand" onClick={()=>go('home')}><span className="brand-emblem" aria-hidden="true">𓋹</span><span className="brand-copy"><span className="ankh">ANKH</span><span className="iva">IVA</span><small>INTERNATIONAL MEDICAL CARE</small></span></button>
         <div className="desktop-nav">
           <button onClick={()=>go('services')}>Treatments</button><button onClick={()=>go('journey')}>Patient Journey</button><button onClick={()=>go('why-egypt')}>Why Egypt</button><Link className="nav-link" to="/providers">Providers</Link>
         </div>
@@ -38,7 +38,7 @@ export default function HomePage(){
         <div className="hero-art" aria-hidden="true"><div className="sun"/><div className="pyramid one"/><div className="pyramid two"/><div className="desert"/></div>
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow"><Sparkles size={16}/> International Medical Care in Egypt</div>
+            <div className="eyebrow"><Sparkles size={16}/> International Medical Care in Egypt</div><div className="hieroglyph-band" aria-label="Decorative ancient Egyptian symbols">𓋹 𓂀 𓆣 𓇳 𓄤</div>
             <h1>World-class care.<br/><span>Egyptian hospitality.</span></h1>
             <p>ANKHIVA coordinates your medical journey in Egypt — from specialist review and treatment planning to travel, accommodation, recovery and follow-up.</p>
             <div className="hero-actions"><button className="cta" onClick={()=>navigate('/intake')}>Get a Free Medical Review <ArrowRight size={18}/></button><button className="ghost" onClick={()=>go('services')}>Explore Treatments</button></div>
@@ -48,7 +48,7 @@ export default function HomePage(){
         </div>
       </section>
 
-      <section className="section shell" id="services">
+      <div className="egyptian-divider" aria-hidden="true"><span>𓆸</span><i></i><span>𓋹</span><i></i><span>𓆸</span></div><section className="section shell" id="services">
         <div className="section-head"><div><span className="label">TREATMENTS</span><h2>Focused specialties for medical travelers</h2></div><p>High-demand categories where international patients need clear clinical review, trusted providers and travel coordination.</p></div>
         <div className="service-grid">{specialties.map((s,i)=><article className="service-card" key={s.slug}><div className="service-icon">{[<Sparkles/>,<BadgeCheck/>,<UserRoundCheck/>,<Stethoscope/>,<HeartPulse/>,<ShieldCheck/>][i]}</div><h3>{s.name}</h3><p>{s.description}</p><button onClick={()=>navigate('/intake')}>Request assessment <ArrowRight size={16}/></button></article>)}</div>
       </section>
@@ -63,6 +63,6 @@ export default function HomePage(){
       <section className="consult"><div className="shell consult-grid"><div><span className="label gold">START YOUR CASE</span><h2>Tell us what treatment you are considering.</h2><p>The new intake flow is structured for international medical review and can later accept secure documents.</p><div className="privacy"><ShieldCheck/> Health data will only be stored after the dedicated secure backend is connected.</div></div><div className="form"><h3>Start in under 3 minutes</h3><p className="catalog-lead">Choose a specialty, add your contact details and summarize the medical request.</p><button className="cta full" onClick={()=>navigate('/intake')}>Start free medical review <ArrowRight size={18}/></button><div className="demo-links"><Link to="/patient">View patient portal demo</Link><Link to="/admin">View admin demo</Link></div></div></div></section>
     </main>
 
-    <footer><div className="shell footer-grid"><div className="footer-brand"><div><span className="ankh">ANKH</span><span className="iva">IVA</span></div><p>International Medical Care in Egypt</p></div><div><b>Platform</b><Link to="/packages">Packages</Link><Link to="/providers">Providers</Link><Link to="/patient">Patient portal</Link></div><div><b>Patient Support</b><Link to="/intake">Free medical review</Link><span><Mail size={15}/> contact@ankhiva.com</span></div></div><div className="shell legal">© 2026 ANKHIVA. Medical information is informational and does not replace individual medical consultation.</div></footer>
+    <footer><div className="footer-hieroglyphs" aria-hidden="true">𓋹 𓂀 𓆣 𓇳 𓄤 𓆸 𓋹</div><div className="shell footer-grid"><div className="footer-brand"><div><span className="ankh">ANKH</span><span className="iva">IVA</span></div><p>International Medical Care in Egypt</p></div><div><b>Platform</b><Link to="/packages">Packages</Link><Link to="/providers">Providers</Link><Link to="/patient">Patient portal</Link></div><div><b>Patient Support</b><Link to="/intake">Free medical review</Link><span><Mail size={15}/> contact@ankhiva.com</span></div></div><div className="shell legal">© 2026 ANKHIVA. Medical information is informational and does not replace individual medical consultation.</div></footer>
   </div>;
 }
