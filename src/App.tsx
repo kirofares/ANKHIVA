@@ -17,6 +17,7 @@ import Auth from './pages/Auth';
 import PatientCase from './pages/PatientCase';
 import PatientQuote from './pages/PatientQuote';
 import AdminSection from './pages/AdminSection';
+import AdminCaseDetail from './pages/AdminCaseDetail';
 
 const patient=(element:ReactNode)=><RequireAuth>{element}</RequireAuth>;
 const staff=(element:ReactNode)=><RequireRoles roles={['coordinator','clinician','admin']}>{element}</RequireRoles>;
@@ -44,6 +45,7 @@ export default function App(){
     <Route path="/patient/quote" element={patient(<PatientQuote/>)}/>
     <Route path="/admin" element={staff(<AdminDashboard/>)}/>
     <Route path="/admin/cases" element={staff(<AdminSection/>)}/>
+    <Route path="/admin/cases/:id" element={staff(<AdminCaseDetail/>)}/>
     <Route path="/admin/patients" element={staff(<AdminSection/>)}/>
     <Route path="/admin/providers" element={staff(<AdminSection/>)}/>
     <Route path="/admin/packages" element={staff(<AdminSection/>)}/>
