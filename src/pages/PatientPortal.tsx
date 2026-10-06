@@ -1,4 +1,5 @@
 import { CalendarCheck, CheckCircle2, Clock3, FileText, MessageSquareText, Plane, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import PortalShell from '../components/PortalShell';
 
 export default function PatientPortal(){
@@ -12,7 +13,7 @@ export default function PatientPortal(){
     </div>
     <div className="portal-grid">
       <section className="portal-card">
-        <div className="card-title"><h2>Your care journey</h2><span>2 of 6</span></div>
+        <div className="card-title"><h2>Your care journey</h2><Link className="text-link" to="/patient/case">View case</Link></div>
         <div className="timeline">
           <div className="done"><CheckCircle2/><span><b>Case submitted</b><small>Medical history and request received.</small></span></div>
           <div className="done"><CheckCircle2/><span><b>Documents received</b><small>Reports are ready for review.</small></span></div>
@@ -25,7 +26,7 @@ export default function PatientPortal(){
         <ShieldCheck/>
         <h3>Your patient coordinator</h3>
         <p>ANKHIVA International Care Team</p>
-        <button className="cta full">Message coordinator</button>
+        <Link className="cta full" to="/patient/case">Open case & documents</Link><Link className="ghost full link-button portal-second-action" to="/patient/quote">View quote layout</Link>
         <small>For emergencies, contact local emergency services. This portal is not an emergency channel.</small>
       </aside>
     </div>
