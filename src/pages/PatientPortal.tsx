@@ -22,10 +22,11 @@ export default function PatientPortal(){
   const [error,setError]=useState('');
 
   useEffect(()=>{
-    if(!supabase||!user) return;
+    const client=supabase;
+    if(!client||!user) return;
     const load=async()=>{
       setLoading(true);setError('');
-      const {data,error}=await supabase.from('medical_cases')
+      const {data,error}=await client.from('medical_cases')
         .select('id,case_number,status,created_at,specialties(name)')
         .eq('patient_id',user.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
       if(error){setError(error.message);setLoading(false);return;}
@@ -33,9 +34,9 @@ export default function PatientPortal(){
       setCaseRow(latest);
       if(latest){
         const [d,m,q]=await Promise.all([
-          supabase.from('case_documents').select('*',{count:'exact',head:true}).eq('case_id',latest.id),
-          supabase.from('case_messages').select('*',{count:'exact',head:true}).eq('case_id',latest.id),
-          supabase.from('quotes').select('status').eq('case_id',latest.id).order('created_at',{ascending:false}).limit(1).maybeSingle()
+          client.from('case_documents').select('*',{count:'exact',head:true}).eq('case_id',latest.id),
+          client.from('case_messages').select('*',{count:'exact',head:true}).eq('case_id',latest.id),
+          client.from('quotes').select('status').eq('case_id',latest.id).order('created_at',{ascending:false}).limit(1).maybeSingle()
         ]);
         setDocs(d.count||0);setMessages(m.count||0);setQuoteStatus(q.data?.status?statusLabel(q.data.status):'Not issued');
       }
