@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider, RequireAuth, RequireRoles } from './auth';
 import HomePage from './pages/HomePage';
@@ -17,8 +18,8 @@ import PatientCase from './pages/PatientCase';
 import PatientQuote from './pages/PatientQuote';
 import AdminSection from './pages/AdminSection';
 
-const patient=(element:React.ReactNode)=><RequireAuth>{element}</RequireAuth>;
-const staff=(element:React.ReactNode)=><RequireRoles roles={['coordinator','clinician','admin']}>{element}</RequireRoles>;
+const patient=(element:ReactNode)=><RequireAuth>{element}</RequireAuth>;
+const staff=(element:ReactNode)=><RequireRoles roles={['coordinator','clinician','admin']}>{element}</RequireRoles>;
 
 export default function App(){
   return <AuthProvider><HashRouter><Routes>
