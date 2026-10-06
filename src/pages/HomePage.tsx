@@ -5,7 +5,7 @@ import {
   HeartPulse, Hotel, Landmark, Mail, Menu, MessageCircle, Plane,
   ShieldCheck, Sparkles, Stethoscope, UserRoundCheck, X
 } from 'lucide-react';
-import { specialties } from '../data';
+import { packages, providers, specialties } from '../data';
 
 const steps = [
   ['1','Send your medical request','Tell us what you need and share available reports securely.'],
@@ -59,6 +59,15 @@ export default function HomePage(){
         <div className="experience-card"><div className="experience-top"><Landmark size={30}/><span>EGYPTIAN HERITAGE<br/><b>MODERN MEDICAL CARE</b></span></div><div className="mini-grid"><div><Plane/><b>Airport</b><span>Pickup</span></div><div><Hotel/><b>Stay</b><span>Hotel options</span></div><div><CalendarCheck/><b>Care</b><span>Appointments</span></div><div><MessageCircle/><b>Support</b><span>Coordinator</span></div></div></div></div></section>
 
       <section className="section tinted"><div className="shell trust-panel"><div><span className="label">WHY ANKHIVA</span><h2>Built around trust, clarity and continuity</h2></div><div className="trust-cards"><div><ShieldCheck/><h3>Provider screening</h3><p>Clinical partners are intended to be published only after documented verification.</p></div><div><BadgeCheck/><h3>Clear patient information</h3><p>Structured plans, estimated costs and travel requirements before booking.</p></div><div><UserRoundCheck/><h3>Human coordination</h3><p>A dedicated workflow connects the patient, provider and travel plan.</p></div></div></div></section>
+
+      <section className="section shell featured-section">
+        <div className="section-head"><div><span className="label">EXPLORE ANKHIVA</span><h2>Providers and treatment packages</h2></div><p>Browse the demonstration network and indicative package structure before starting your individual medical review.</p></div>
+        <div className="featured-columns">
+          <div><div className="card-title"><h2>Featured providers</h2><Link className="text-link" to="/providers">View all <ArrowRight size={16}/></Link></div><div className="home-list">{providers.slice(0,3).map(p=><Link to={'/providers/'+p.id} key={p.id}><span><b>{p.name}</b><small>{p.specialty} · {p.city}</small></span><ArrowRight size={17}/></Link>)}</div></div>
+          <div><div className="card-title"><h2>Popular package examples</h2><Link className="text-link" to="/packages">View all <ArrowRight size={16}/></Link></div><div className="home-list">{packages.slice(0,3).map(p=><Link to={'/packages/'+p.id} key={p.id}><span><b>{p.title}</b><small>From {p.currency} {p.fromPrice.toLocaleString()} · {p.nights} nights</small></span><ArrowRight size={17}/></Link>)}</div></div>
+        </div>
+        <div className="home-info-links"><Link to="/about">About ANKHIVA</Link><Link to="/faq">Frequently asked questions</Link><Link to="/contact">Contact international patient support</Link></div>
+      </section>
 
       <section className="consult"><div className="shell consult-grid"><div><span className="label gold">START YOUR CASE</span><h2>Tell us what treatment you are considering.</h2><p>The new intake flow is structured for international medical review and can later accept secure documents.</p><div className="privacy"><ShieldCheck/> Health data will only be stored after the dedicated secure backend is connected.</div></div><div className="form"><h3>Start in under 3 minutes</h3><p className="catalog-lead">Choose a specialty, add your contact details and summarize the medical request.</p><button className="cta full" onClick={()=>navigate('/intake')}>Start free medical review <ArrowRight size={18}/></button><div className="demo-links"><Link to="/patient">View patient portal demo</Link><Link to="/admin">View admin demo</Link></div></div></div></section>
     </main>
