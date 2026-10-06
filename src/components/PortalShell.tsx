@@ -5,8 +5,8 @@ import { Activity, BriefcaseMedical, FileText, House, LogOut, MessageSquareText,
 
 export default function PortalShell({children, admin=false}:{children:ReactNode; admin?:boolean}) {
   const items: [string,string,LucideIcon][] = admin
-    ? [['/admin','Overview',Activity],['/admin/cases','Cases',BriefcaseMedical],['/providers','Providers',Stethoscope],['/packages','Packages',FileText],['/admin','Patients',UsersRound]]
-    : [['/patient','Overview',House],['/patient','My case',BriefcaseMedical],['/patient','Documents',FileText],['/patient','Messages',MessageSquareText]];
+    ? [['/admin','Overview',Activity],['/admin/cases','Cases',BriefcaseMedical],['/admin/patients','Patients',UsersRound],['/admin/providers','Providers',Stethoscope],['/admin/packages','Packages',FileText],['/admin/quotes','Quotes',FileText],['/admin/messages','Inbox',MessageSquareText]]
+    : [['/patient','Overview',House],['/patient/case','My case',BriefcaseMedical],['/patient/case','Documents',FileText],['/patient/quote','Quote',FileText],['/patient','Messages',MessageSquareText]];
   return <div className="portal-layout">
     <aside className="portal-sidebar">
       <Link to="/" className="portal-brand"><span className="portal-emblem" aria-hidden="true">𓋹</span><b>ANKH<span>IVA</span></b><small>{admin?'ADMIN CONSOLE':'PATIENT PORTAL'}</small><span className="portal-glyphs" aria-hidden="true">𓆸 𓋹 𓆸</span></Link>
