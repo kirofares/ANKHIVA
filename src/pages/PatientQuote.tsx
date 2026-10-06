@@ -12,13 +12,14 @@ export default function PatientQuote(){
  const [loading,setLoading]=useState(true);
  const [error,setError]=useState('');
  useEffect(()=>{
-   if(!supabase||!user) return;
+   const client=supabase;
+   if(!client||!user) return;
    const load=async()=>{
      setLoading(true);
-     const c=await supabase.from('medical_cases').select('id').eq('patient_id',user.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
+     const c=await client.from('medical_cases').select('id').eq('patient_id',user.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
      if(c.error){setError(c.error.message);setLoading(false);return;}
      if(c.data){
-       const q=await supabase.from('quotes').select('currency,medical_cost,accommodation_cost,transport_cost,coordination_fee,total,status,valid_until,notes').eq('case_id',c.data.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
+       const q=await client.from('quotes').select('currency,medical_cost,accommodation_cost,transport_cost,coordination_fee,total,status,valid_until,notes').eq('case_id',c.data.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
        if(q.error) setError(q.error.message); else setQuote(q.data as Quote|null);
      }
      setLoading(false);
