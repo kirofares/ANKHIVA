@@ -9,7 +9,7 @@ export default function PortalShell({children, admin=false}:{children:ReactNode;
     : [['/patient','Overview',House],['/patient','My case',BriefcaseMedical],['/patient','Documents',FileText],['/patient','Messages',MessageSquareText]];
   return <div className="portal-layout">
     <aside className="portal-sidebar">
-      <Link to="/" className="portal-brand"><b>ANKH<span>IVA</span></b><small>{admin?'ADMIN CONSOLE':'PATIENT PORTAL'}</small></Link>
+      <Link to="/" className="portal-brand"><span className="portal-emblem" aria-hidden="true">𓋹</span><b>ANKH<span>IVA</span></b><small>{admin?'ADMIN CONSOLE':'PATIENT PORTAL'}</small><span className="portal-glyphs" aria-hidden="true">𓆸 𓋹 𓆸</span></Link>
       <nav>{items.map(([to,label,Icon])=><NavLink key={label} to={to} className={({isActive})=>isActive?'active':''}><Icon size={18}/>{label}</NavLink>)}</nav>
       <Link className="portal-signout" to="/"><LogOut size={17}/> Back to website</Link>
     </aside>
