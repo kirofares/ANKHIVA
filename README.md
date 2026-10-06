@@ -1,36 +1,84 @@
 # ANKHIVA — International Medical Care in Egypt
 
-Initial MVP for a medical-tourism platform focused on international patients seeking treatment in Egypt.
+ANKHIVA is an international medical-tourism platform for patients seeking coordinated treatment in Egypt.
 
-## Current MVP
+**Positioning:** Egyptian Heritage. Modern Medical Care.
+
+## MVP v0.2
+
+### Public experience
 - Premium responsive landing page
-- Treatment categories: Cosmetic Surgery, Dental, Hair Restoration, Ophthalmology, Bariatric Surgery, Orthopedics
-- Patient journey flow
-- Why Egypt / travel coordination proposition
-- Free medical review form (prototype only; no backend storage yet)
-- Safety copy making clear the prototype is not an emergency or clinical service
+- Treatment categories
+- Provider directory
+- Indicative treatment packages
+- Structured 3-step medical intake flow
+- Patient journey and Egypt value proposition
 
-## Run locally
+### Patient portal
+- Case overview
+- Current care stage
+- Milestones
+- Documents status
+- Coordinator messaging entry point
+- Travel/recovery pathway
+
+### Operations / admin
+- International patient case dashboard
+- Case status and priority view
+- Provider and package management entry points
+- Quote workflow architecture
+
+### Backend architecture
+A dedicated Supabase schema is prepared in:
+`supabase/migrations/001_ankhiva_core.sql`
+
+It includes:
+- profiles and roles
+- specialties
+- providers
+- treatment packages
+- medical cases
+- medical document metadata
+- quotes
+- case messages
+- Row Level Security policies
+
+**Important:** The schema must be deployed to a dedicated ANKHIVA Supabase project. Do not deploy medical-tourism patient data into another product database.
+
+## Local development
+
 ```bash
 npm install
 npm run dev
 ```
 
-## Production roadmap
-1. Secure patient accounts and consent flow
-2. Supabase/Postgres backend with row-level security
-3. Document upload with controlled access and audit trail
-4. CRM-style case dashboard for coordinators
-5. Doctor/provider directory and verification workflow
-6. Treatment/package quotation engine
-7. Multi-currency and multilingual UI (EN/AR initially, then DE/FR)
-8. WhatsApp/email notifications
-9. Travel and hotel coordination layer
-10. Payment/deposit integration
-11. Admin dashboard and analytics
-12. Legal/privacy/medical-disclaimer pages reviewed for target markets
+Build:
 
-## Brand
-- ANKHIVA
-- Descriptor: International Medical Care in Egypt
-- Tagline: Egyptian Heritage. Modern Medical Care.
+```bash
+npm run build
+```
+
+## Environment
+
+Copy `.env.example` to `.env.local` and provide:
+
+```
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_PUBLISHABLE_KEY=...
+```
+
+Never put service-role keys in browser environment variables.
+
+## Production security requirements
+- Private medical-document bucket
+- RLS on every patient-data table
+- Patient/case-scoped storage paths
+- Staff roles with least privilege
+- Provider verification before public listing
+- Audit trail for sensitive administrative actions
+- Consent and privacy notices reviewed for target markets
+- Separate operational emergency guidance; ANKHIVA is not an emergency service
+- No real medical data should be entered until the dedicated backend and policies are active
+
+## Current status
+The frontend flows and database design are committed. The public intake currently **does not store medical data** until the dedicated ANKHIVA Supabase project is connected.
