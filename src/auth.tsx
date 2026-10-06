@@ -40,10 +40,11 @@ export function AuthProvider({children}:{children:ReactNode}){
   const refreshProfile=async()=>{ if(user) await loadProfile(user.id); };
 
   useEffect(()=>{
-    if(!supabase){ setLoading(false); return; }
+    const client=supabase;
+    if(!client){ setLoading(false); return; }
     let active=true;
     const bootstrap=async()=>{
-      const {data}=await supabase.auth.getSession();
+      const {data}=await client.auth.getSession();
       if(!active) return;
       const nextUser=data.session?.user ?? null;
       setUser(nextUser);
@@ -51,7 +52,7 @@ export function AuthProvider({children}:{children:ReactNode}){
       if(active) setLoading(false);
     };
     bootstrap();
-    const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>{
+    const {data:{subscription}}=client.auth.onAuthStateChange((_event,session)=>{
       const nextUser=session?.user ?? null;
       setUser(nextUser);
       if(nextUser) void loadProfile(nextUser.id); else setProfile(null);
