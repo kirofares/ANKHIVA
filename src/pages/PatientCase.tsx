@@ -59,7 +59,7 @@ export default function PatientCase(){
  if(!caseRow) return <PortalShell><section className="portal-card empty-state"><Stethoscope/><h2>No case found</h2><p>Submit a medical request first.</p></section></PortalShell>;
 
  return <PortalShell>
-   <div className="portal-top"><div><span className="label">CASE {caseRow.case_number}</span><h1>{caseRow.specialties?.name||'Medical case'}</h1><p>Your latest secure ANKHIVA case.</p></div><span className="status-pill">{caseRow.status.replaceAll('_',' ')}</span></div>
+   <div className="portal-top"><div><span className="label">CASE {caseRow.case_number}</span><h1>{caseRow.specialties?.name||'Medical case'}</h1><p>Your latest secure ANKHIVA case.</p></div><span className="status-pill">{caseRow.status.replace(/_/g,' ')}</span></div>
    {error&&<div className="form-error">{error}</div>}
    <div className="portal-grid">
      <section className="portal-card"><h2>Case summary</h2><div className="case-detail-list"><p><Stethoscope/><span><b>Medical history</b><small>{caseRow.medical_summary||'Not provided'}</small></span></p><p><FileText/><span><b>Your request</b><small>{caseRow.patient_request||'Not provided'}</small></span></p></div>
