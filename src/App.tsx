@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PatientPortal from './pages/PatientPortal';
 import AdminDashboard from './pages/AdminDashboard';
@@ -7,7 +7,7 @@ import Packages from './pages/Packages';
 import Intake from './pages/Intake';
 
 export default function App(){
-  return <BrowserRouter><Routes>
+  return <HashRouter><Routes>
     <Route path="/" element={<HomePage/>}/>
     <Route path="/intake" element={<Intake/>}/>
     <Route path="/patient" element={<PatientPortal/>}/>
@@ -16,5 +16,5 @@ export default function App(){
     <Route path="/providers" element={<Providers/>}/>
     <Route path="/packages" element={<Packages/>}/>
     <Route path="*" element={<Navigate to="/" replace/>}/>
-  </Routes></BrowserRouter>;
+  </Routes></HashRouter>;
 }
